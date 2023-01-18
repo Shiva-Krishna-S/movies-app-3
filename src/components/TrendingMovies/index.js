@@ -19,19 +19,24 @@ class TrendingMovies extends Component {
 
   componentDidMount() {
     this.getTrendingMovies()
+    this.isComponentMounted = true
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false
   }
 
   getTrendingMovies = async () => {
+    this.setState({trendingMoviesApiStatus: apiStatusConstants.inProgress})
+    const jwtToken = Cookies.get('jwt_token')
+    const apiUrl = 'https://apis.ccbp.in/movies-app/trending-movies'
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
     try {
-      this.setState({trendingMoviesApiStatus: apiStatusConstants.inProgress})
-      const jwtToken = Cookies.get('jwt_token')
-      const apiUrl = 'https://apis.ccbp.in/movies-app/trending-movies'
-      const options = {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-        method: 'GET',
-      }
       const response = await fetch(apiUrl, options)
       if (response.ok) {
         const fetchedData = await response.json()
@@ -42,18 +47,22 @@ class TrendingMovies extends Component {
           posterPath: eachMovie.poster_path,
           name: eachMovie.title,
         }))
-
-        this.setState({
-          trendingMoviesList: updatedTrendingData,
-          trendingMoviesApiStatus: apiStatusConstants.success,
-        })
-      } else if (response.status === 404 || response.status === 401) {
-        this.setState({trendingMoviesApiStatus: apiStatusConstants.failure})
+        if (this.isComponentMounted) {
+          this.setState({
+            trendingMoviesList: updatedTrendingData,
+            trendingMoviesApiStatus: apiStatusConstants.success,
+          })
+        }
       } else {
-        this.setState({trendingMoviesApiStatus: apiStatusConstants.failure})
+        const {trendingMoviesApiStatus} = this.state
+        if (this.isComponentMounted) {
+          this.setState({trendingMoviesApiStatus: apiStatusConstants.failure})
+        }
       }
     } catch (error) {
-      this.setState({trendingMoviesApiStatus: apiStatusConstants.failure})
+      if (this.isComponentMounted) {
+        this.setState({trendingMoviesApiStatus: apiStatusConstants.failure})
+      }
     }
   }
 

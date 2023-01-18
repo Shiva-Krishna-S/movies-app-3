@@ -25,27 +25,32 @@ class MovieItemDetails extends Component {
 
   componentDidMount() {
     this.getMovieDetails()
+    this.isComponentMounted = true
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false
   }
 
   getMovieDetails = async parameter => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
+
+    const jwtToken = Cookies.get('jwt_token')
+
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+
+    const requiredId = parameter === undefined ? id : parameter
+
+    const apiUrl = `https://apis.ccbp.in/movies-app/movies/${requiredId}`
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
     try {
-      this.setState({apiStatus: apiStatusConstants.inProgress})
-
-      const jwtToken = Cookies.get('jwt_token')
-
-      const {match} = this.props
-      const {params} = match
-      const {id} = params
-
-      const requiredId = parameter === undefined ? id : parameter
-
-      const apiUrl = `https://apis.ccbp.in/movies-app/movies/${requiredId}`
-      const options = {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-        method: 'GET',
-      }
       const response = await fetch(apiUrl, options)
       if (response.ok) {
         const fetchedData = await response.json()
@@ -84,21 +89,29 @@ class MovieItemDetails extends Component {
           }),
         )
         //   console.log(spokenLanguagesList)
-
-        this.setState({
-          movieDetails: updatedData,
-          apiStatus: apiStatusConstants.success,
-          genres: genresList,
-          similarMovies: similarMoviesList.slice(0, 6),
-          spokenLanguages: spokenLanguagesList,
-        })
-      } else if (response.status === 404 || response.status === 401) {
-        this.setState({apiStatus: apiStatusConstants.failure})
+        if (this.isComponentMounted) {
+          this.setState({
+            movieDetails: updatedData,
+            apiStatus: apiStatusConstants.success,
+            genres: genresList,
+            similarMovies: similarMoviesList.slice(0, 6),
+            spokenLanguages: spokenLanguagesList,
+          })
+        }
+      } else if (response.status === 404) {
+        if (this.isComponentMounted) {
+          this.setState({apiStatus: apiStatusConstants.failure})
+        }
       } else {
-        this.setState({apiStatus: apiStatusConstants.failure})
+        const {apiStatus} = this.state
+        if (this.isComponentMounted) {
+          this.setState({apiStatus: apiStatusConstants.failure})
+        }
       }
     } catch (error) {
-      this.setState({apiStatus: apiStatusConstants.failure})
+      if (this.isComponentMounted) {
+        this.setState({apiStatus: apiStatusConstants.failure})
+      }
     }
   }
 

@@ -23,6 +23,14 @@ class Search extends Component {
     currentPage: 1,
   }
 
+  componentDidMount() {
+    this.isComponentMounted = true
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false
+  }
+
   onClickPrevBtn = () => {
     const {currentPage} = this.state
     if (currentPage > 1) {
@@ -39,17 +47,17 @@ class Search extends Component {
   }
 
   getSearchResults = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
+    const {query} = this.state
+    const jwtToken = Cookies.get('jwt_token')
+    const apiUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${query}`
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
     try {
-      this.setState({apiStatus: apiStatusConstants.inProgress})
-      const {query} = this.state
-      const jwtToken = Cookies.get('jwt_token')
-      const apiUrl = `https://apis.ccbp.in/movies-app/movies-search?search=${query}`
-      const options = {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-      }
       const response = await fetch(apiUrl, options)
       //   console.log(response)
       if (response.ok) {
@@ -60,23 +68,26 @@ class Search extends Component {
           id: eachMovie.id,
           backdropPath: eachMovie.backdrop_path,
         }))
-        this.setState({
-          searchMoviesList: updatedData,
-          apiStatus: apiStatusConstants.success,
-        })
-      } else if (response.status === 404 || response.status === 401) {
-        this.setState({
-          apiStatus: apiStatusConstants.failure,
-        })
+        if (this.isComponentMounted) {
+          this.setState({
+            searchMoviesList: updatedData,
+            apiStatus: apiStatusConstants.success,
+          })
+        }
       } else {
+        const {apiStatus} = this.state
+        if (this.isComponentMounted) {
+          this.setState({
+            apiStatus: apiStatusConstants.failure,
+          })
+        }
+      }
+    } catch (error) {
+      if (this.isComponentMounted) {
         this.setState({
           apiStatus: apiStatusConstants.failure,
         })
       }
-    } catch (error) {
-      this.setState({
-        apiStatus: apiStatusConstants.failure,
-      })
     }
   }
 

@@ -26,10 +26,11 @@ class Home extends Component {
 
   componentDidMount() {
     this.getOriginalMovies()
+    this.isComponentMounted = true
   }
 
-  componentWillUnmount = () => {
-    this.setState({randomMovieObject: {}})
+  componentWillUnmount() {
+    this.isComponentMounted = false
   }
 
   updateRandomMovieObject = () => {
@@ -42,16 +43,16 @@ class Home extends Component {
   }
 
   getOriginalMovies = async () => {
+    this.setState({originalsMoviesApiStatus: apiStatusConstants.inProgress})
+    const jwtToken = Cookies.get('jwt_token')
+    const apiUrl = 'https://apis.ccbp.in/movies-app/originals'
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
     try {
-      this.setState({originalsMoviesApiStatus: apiStatusConstants.inProgress})
-      const jwtToken = Cookies.get('jwt_token')
-      const apiUrl = 'https://apis.ccbp.in/movies-app/originals'
-      const options = {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-        method: 'GET',
-      }
       const response = await fetch(apiUrl, options)
       if (response.ok) {
         const fetchedData = await response.json()
@@ -62,21 +63,25 @@ class Home extends Component {
           posterPath: eachMovie.poster_path,
           name: eachMovie.title,
         }))
-
-        this.setState(
-          {
-            originalsMoviesList: updatedOriginalsData,
-            originalsMoviesApiStatus: apiStatusConstants.success,
-          },
-          this.updateRandomMovieObject,
-        )
-      } else if (response.status === 404 || response.status === 401) {
-        this.setState({originalsMoviesApiStatus: apiStatusConstants.failure})
+        if (this.isComponentMounted) {
+          this.setState(
+            {
+              originalsMoviesList: updatedOriginalsData,
+              originalsMoviesApiStatus: apiStatusConstants.success,
+            },
+            this.updateRandomMovieObject,
+          )
+        }
       } else {
-        this.setState({originalsMoviesApiStatus: apiStatusConstants.failure})
+        const {originalsMoviesApiStatus} = this.state
+        if (this.isComponentMounted) {
+          this.setState({originalsMoviesApiStatus: apiStatusConstants.failure})
+        }
       }
     } catch (error) {
-      this.setState({originalsMoviesApiStatus: apiStatusConstants.failure})
+      if (this.isComponentMounted) {
+        this.setState({originalsMoviesApiStatus: apiStatusConstants.failure})
+      }
     }
   }
 

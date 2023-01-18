@@ -21,19 +21,24 @@ class Popular extends Component {
 
   componentDidMount() {
     this.getPopularMovies()
+    this.isComponentMounted = true
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false
   }
 
   getPopularMovies = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
+    const jwtToken = Cookies.get('jwt_token')
+    const apiUrl = 'https://apis.ccbp.in/movies-app/popular-movies'
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
     try {
-      this.setState({apiStatus: apiStatusConstants.inProgress})
-      const jwtToken = Cookies.get('jwt_token')
-      const apiUrl = 'https://apis.ccbp.in/movies-app/popular-movies'
-      const options = {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-        method: 'GET',
-      }
       const response = await fetch(apiUrl, options)
       if (response.ok) {
         const fetchedData = await response.json()
@@ -44,17 +49,22 @@ class Popular extends Component {
           posterPath: eachMovie.poster_path,
           title: eachMovie.title,
         }))
-        this.setState({
-          popularMoviesList: updatedPopularData,
-          apiStatus: apiStatusConstants.success,
-        })
-      } else if (response.status === 404 || response.status === 401) {
-        this.setState({apiStatus: apiStatusConstants.failure})
+        if (this.isComponentMounted) {
+          this.setState({
+            popularMoviesList: updatedPopularData,
+            apiStatus: apiStatusConstants.success,
+          })
+        }
       } else {
-        this.setState({apiStatus: apiStatusConstants.failure})
+        const {apiStatus} = this.state
+        if (this.isComponentMounted) {
+          this.setState({apiStatus: apiStatusConstants.failure})
+        }
       }
     } catch (error) {
-      this.setState({apiStatus: apiStatusConstants.failure})
+      if (this.isComponentMounted) {
+        this.setState({apiStatus: apiStatusConstants.failure})
+      }
     }
   }
 

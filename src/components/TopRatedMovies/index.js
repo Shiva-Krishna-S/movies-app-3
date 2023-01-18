@@ -19,19 +19,24 @@ class TopRatedMovies extends Component {
 
   componentDidMount() {
     this.getTopRatedMovies()
+    this.isComponentMounted = true
+  }
+
+  componentWillUnmount() {
+    this.isComponentMounted = false
   }
 
   getTopRatedMovies = async () => {
+    this.setState({topRatedMoviesApiStatus: apiStatusConstants.inProgress})
+    const jwtToken = Cookies.get('jwt_token')
+    const apiUrl = 'https://apis.ccbp.in/movies-app/top-rated-movies'
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
     try {
-      this.setState({topRatedMoviesApiStatus: apiStatusConstants.inProgress})
-      const jwtToken = Cookies.get('jwt_token')
-      const apiUrl = 'https://apis.ccbp.in/movies-app/top-rated-movies'
-      const options = {
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-        },
-        method: 'GET',
-      }
       const response = await fetch(apiUrl, options)
       if (response.ok) {
         const fetchedData = await response.json()
@@ -42,18 +47,22 @@ class TopRatedMovies extends Component {
           posterPath: eachMovie.poster_path,
           name: eachMovie.title,
         }))
-
-        this.setState({
-          topRatedMoviesList: updatedTopRatedData,
-          topRatedMoviesApiStatus: apiStatusConstants.success,
-        })
-      } else if (response.status === 404 || response.status === 401) {
-        this.setState({topRatedMoviesApiStatus: apiStatusConstants.failure})
+        if (this.isComponentMounted) {
+          this.setState({
+            topRatedMoviesList: updatedTopRatedData,
+            topRatedMoviesApiStatus: apiStatusConstants.success,
+          })
+        }
       } else {
-        this.setState({topRatedMoviesApiStatus: apiStatusConstants.failure})
+        const {topRatedMoviesApiStatus} = this.state
+        if (this.isComponentMounted) {
+          this.setState({topRatedMoviesApiStatus: apiStatusConstants.failure})
+        }
       }
     } catch (error) {
-      this.setState({topRatedMoviesApiStatus: apiStatusConstants.failure})
+      if (this.isComponentMounted) {
+        this.setState({topRatedMoviesApiStatus: apiStatusConstants.failure})
+      }
     }
   }
 
