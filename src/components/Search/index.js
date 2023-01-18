@@ -46,6 +46,13 @@ class Search extends Component {
     }
   }
 
+  searchMovies = value => {
+    this.setState(
+      {query: value, currentPage: 1, searchMoviesList: []},
+      this.getSearchResults,
+    )
+  }
+
   getSearchResults = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const {query} = this.state
@@ -89,13 +96,6 @@ class Search extends Component {
         })
       }
     }
-  }
-
-  searchMovies = value => {
-    this.setState(
-      {query: value, currentPage: 1, searchMoviesList: []},
-      this.getSearchResults,
-    )
   }
 
   onTryAgain = () => {
@@ -147,11 +147,8 @@ class Search extends Component {
   }
 
   renderSearchSuccessView = () => {
-    const {query, currentPage} = this.state
-    let {searchMoviesList} = this.state
-    if (query.length === 0) {
-      searchMoviesList = []
-    }
+    const {currentPage} = this.state
+    const {searchMoviesList} = this.state
     const startIndex = (currentPage - 1) * moviesPerPage
     const endIndex = startIndex + moviesPerPage
     const currentPageMoviesList = searchMoviesList.slice(startIndex, endIndex)
