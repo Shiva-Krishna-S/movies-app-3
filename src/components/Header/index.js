@@ -57,8 +57,6 @@ class Header extends Component {
   render() {
     const {searchPath, showMenuTabs, searchInput} = this.state
 
-    const {pageContentsLoading} = this.props
-
     const showSearchInput = searchPath === '/search'
 
     const homeTabClassName = searchPath === '/' ? 'active' : null
@@ -94,7 +92,7 @@ class Header extends Component {
               </ul>
             </div>
             <div className="header-search-menu-icons-container">
-              {showSearchInput && !pageContentsLoading && (
+              {showSearchInput && (
                 <div className="search-input-container">
                   <input
                     type="search"
@@ -114,7 +112,7 @@ class Header extends Component {
                   </button>
                 </div>
               )}
-              {!showSearchInput && !pageContentsLoading && (
+              {!showSearchInput && (
                 <button
                   type="button"
                   className="header-search-menu-icons-button"

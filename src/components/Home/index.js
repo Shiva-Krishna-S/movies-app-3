@@ -197,9 +197,12 @@ class Home extends Component {
   render() {
     const {originalsMoviesApiStatus, randomMovieObject} = this.state
 
-    const pageContentsLoading = originalsMoviesApiStatus === 'IN_PROGRESS'
+    let backdropPathUrl = ''
 
-    const {backdropPath} = randomMovieObject
+    if (originalsMoviesApiStatus === 'SUCCESS') {
+      const {backdropPath} = randomMovieObject
+      backdropPathUrl = backdropPath
+    }
 
     const topSectionClassName =
       originalsMoviesApiStatus === 'SUCCESS' ? 'home-page-top-section' : null
@@ -209,10 +212,10 @@ class Home extends Component {
         <div
           className={`home-top-container ${topSectionClassName}`}
           style={{
-            backgroundImage: `url(${backdropPath})`,
+            backgroundImage: `url(${backdropPathUrl})`,
           }}
         >
-          <Header pageContentsLoading={pageContentsLoading} />
+          <Header />
           {this.renderRandomMovieContainer()}
         </div>
         <h1 className="movies-category-title">Trending Now</h1>

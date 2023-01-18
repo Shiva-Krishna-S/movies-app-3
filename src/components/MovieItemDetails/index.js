@@ -139,7 +139,7 @@ class MovieItemDetails extends Component {
         <button
           type="button"
           onClick={this.onTryAgain}
-          className='failure-view-page-try-again-btn"'
+          className="failure-view-page-try-again-btn"
         >
           Try Again
         </button>
@@ -151,61 +151,63 @@ class MovieItemDetails extends Component {
     this.getMovieDetails(newId)
   }
 
-  renderMovieItemDetailsSuccessView = () => {
-    const {
-      apiStatus,
-      movieDetails,
-      genres,
-      similarMovies,
-      spokenLanguages,
-    } = this.state
+  renderMovieItemDetailsTopSectionSuccessView = () => {
+    const {movieDetails} = this.state
 
-    const pageContentsLoading = apiStatus === 'IN_PROGRESS'
-
-    const {
-      title,
-      adult,
-      runtime,
-      releaseDate,
-      overview,
-      budget,
-      voteAverage,
-      voteCount,
-      backdropPath,
-    } = movieDetails
+    const {title, adult, runtime, releaseDate, overview} = movieDetails
 
     const hours = Math.floor(runtime / 60)
     const minutes = runtime % 60
     const date = new Date(releaseDate)
     const year = date.getFullYear()
-    const formattedDate = format(new Date(releaseDate), 'do MMMM yyyy')
+
     return (
       <>
-        <div
-          className="movie-item-details-top-section"
-          style={{
-            backgroundImage: `url(${backdropPath})`,
-          }}
-        >
-          <Header pageContentsLoading={pageContentsLoading} />
-          <div className="movie-basic-details-container">
-            <h1 className="movie-item-title">{title}</h1>
-            <div className="movie-basic-details-list">
-              <p className="movie-basic-details-list-item">
-                {`${hours}h ${minutes}m`}
-              </p>
-              <p className="movie-basic-details-list-item certification-container">
-                {adult ? 'A' : 'U/A'}
-              </p>
-              <p className="movie-basic-details-list-item">{year}</p>
-            </div>
-            <p className="movie-item-overview">{overview}</p>
-            <button type="button" className="movie-item-play-btn">
-              Play
-            </button>
+        <div className="movie-basic-details-container">
+          <h1 className="movie-item-title">{title}</h1>
+          <div className="movie-basic-details-list">
+            <p className="movie-basic-details-list-item">
+              {`${hours}h ${minutes}m`}
+            </p>
+            <p className="movie-basic-details-list-item certification-container">
+              {adult ? 'A' : 'U/A'}
+            </p>
+            <p className="movie-basic-details-list-item">{year}</p>
           </div>
-          <div className="movie-item-shade-container">{}</div>
+          <p className="movie-item-overview">{overview}</p>
+          <button type="button" className="movie-item-play-btn">
+            Play
+          </button>
         </div>
+        <div className="movie-item-shade-container">{}</div>
+      </>
+    )
+  }
+
+  renderMovieDetailsTopSection = () => {
+    const {apiStatus} = this.state
+
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderMovieItemDetailsTopSectionSuccessView()
+      case apiStatusConstants.failure:
+        return this.renderMovieItemDetailsFailureView()
+      case apiStatusConstants.inProgress:
+        return this.renderMovieItemDetailsLoadingView()
+      default:
+        return null
+    }
+  }
+
+  renderMidAndBottomSection = () => {
+    const {movieDetails, genres, similarMovies, spokenLanguages} = this.state
+
+    const {releaseDate, budget, voteAverage, voteCount} = movieDetails
+
+    const formattedDate = format(new Date(releaseDate), 'do MMMM yyyy')
+
+    return (
+      <>
         <div className="movie-item-mid-container">
           <div className="details-each-container">
             <h1 className="movie-item-mid-container-title">Genres</h1>
@@ -272,30 +274,31 @@ class MovieItemDetails extends Component {
     )
   }
 
-  renderMovieDetails = () => {
-    const {apiStatus} = this.state
-
-    switch (apiStatus) {
-      case apiStatusConstants.success:
-        return this.renderMovieItemDetailsSuccessView()
-      case apiStatusConstants.failure:
-        return this.renderMovieItemDetailsFailureView()
-      case apiStatusConstants.inProgress:
-        return this.renderMovieItemDetailsLoadingView()
-      default:
-        return null
-    }
-  }
-
   render() {
-    const {apiStatus} = this.state
-    const pageContentsLoading = apiStatus === 'IN_PROGRESS'
+    const {apiStatus, movieDetails} = this.state
+
+    let backdropPathUrl = ''
+
+    if (apiStatus === 'SUCCESS') {
+      const {backdropPath} = movieDetails
+      backdropPathUrl = backdropPath
+    }
+
+    const topSectionClassName =
+      apiStatus === 'SUCCESS' ? 'movie-item-details-top-section' : null
+
     return (
       <div className="movie-item-details-container">
-        {apiStatus !== 'SUCCESS' && (
-          <Header pageContentsLoading={pageContentsLoading} />
-        )}
-        {this.renderMovieDetails()}
+        <div
+          className={`${topSectionClassName}`}
+          style={{
+            backgroundImage: `url(${backdropPathUrl})`,
+          }}
+        >
+          <Header />
+          {this.renderMovieDetailsTopSection()}
+        </div>
+        {apiStatus === 'SUCCESS' && <>{this.renderMidAndBottomSection()}</>}
       </div>
     )
   }

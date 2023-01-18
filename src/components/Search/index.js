@@ -214,14 +214,9 @@ class Search extends Component {
   }
 
   render() {
-    const {apiStatus} = this.state
-    const pageContentsLoading = apiStatus === 'IN_PROGRESS'
     return (
       <div className="search-page-container">
-        <Header
-          searchMovies={this.searchMovies}
-          pageContentsLoading={pageContentsLoading}
-        />
+        <Header searchMovies={this.searchMovies} />
         {this.renderSearchedMovies()}
       </div>
     )
