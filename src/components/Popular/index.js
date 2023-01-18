@@ -96,7 +96,6 @@ class Popular extends Component {
     return (
       <>
         <PopularMoviesList popularMoviesList={popularMoviesList} />
-        <Footer />
       </>
     )
   }
@@ -123,6 +122,7 @@ class Popular extends Component {
       <div className="popular-page-background-container">
         <Header pageContentsLoading={pageContentsLoading} />
         {this.renderPopularMovies()}
+        <Footer />
       </div>
     )
   }
