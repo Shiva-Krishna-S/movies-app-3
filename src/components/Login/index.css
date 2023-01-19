@@ -46,6 +46,13 @@
   justify-content: center;
   align-items: center;
   min-height: 85vh;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .login-page-form-container {
+    margin-top: 45px;
+  }
 }
 
 .login-page-form {
