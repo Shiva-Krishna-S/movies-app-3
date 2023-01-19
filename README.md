@@ -1,4 +1,4 @@
-# Movies App (Netflix/Aamazon Prime Clone)
+# Movies App (Netflix/Amazon Prime Clone)
 
 ## _React-JS Project_
 
