@@ -139,6 +139,20 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 
 - Users should be able to view the website responsively in mobile view, tablet view as well
 
+### Stretch Goals
+
+<details>
+<summary>Additional Functionality added</summary>
+
+- Home Route
+  - An HTTP Get request should be made to **Top Rated Movies API URL** as well
+    - **_Loader_** should be displayed while fetching the data
+    - After the data is successfully fetched from the API
+      - Display the list of movies received from the top rated movies response
+    - If the HTTP GET request made is unsuccessful, then the failure view given in the **Figma** screens should be displayed
+      - When the **Try Again** button is clicked, then the HTTP GET request should be made to **Top Rated Movies API URL**
+- Users can browse popular movies & searched movies using pagination buttons.
+</details>
 
 ### Third party packages used to achieve the design or functionality
 
@@ -148,6 +162,33 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 
 </details>
 
+
+### User Credentials
+
+<details>
+<summary>Click to view user credentials</summary>
+
+<br/>
+
+**You can use any one of the following credentials**
+
+```text
+  username: aakash
+  password: sky@007
+```
+
+```text
+  username: agastya
+  password: myth#789
+```
+
+```text
+  username: advika
+  password: world@5
+```
+
+<br/>
+</details>
 
 ### Resources
 
@@ -425,44 +466,6 @@ Returns a response containing the list of movies and their movie names should in
 
 </details>
 
-### User Credentials
 
-<details>
-<summary>Click to view user credentials</summary>
 
-<br/>
 
-**You can use any one of the following credentials**
-
-```text
-  username: aakash
-  password: sky@007
-```
-
-```text
-  username: agastya
-  password: myth#789
-```
-
-```text
-  username: advika
-  password: world@5
-```
-
-<br/>
-</details>
-
-### Stretch Goals
-
-<details>
-<summary>Additional Functionality added</summary>
-
-- Home Route
-  - An HTTP Get request should be made to **Top Rated Movies API URL** as well
-    - **_Loader_** should be displayed while fetching the data
-    - After the data is successfully fetched from the API
-      - Display the list of movies received from the top rated movies response
-    - If the HTTP GET request made is unsuccessful, then the failure view given in the **Figma** screens should be displayed
-      - When the **Try Again** button is clicked, then the HTTP GET request should be made to **Top Rated Movies API URL**
-- Users can browse popular movies & searched movies using pagination buttons.
-</details>
