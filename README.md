@@ -1,61 +1,17 @@
-In this project let's build a **Movies App** by applying the concepts we have learned till now. This project allows you to practice the concepts and techniques learned till React Course and apply them in a concrete project.
+# MoviesApp (Netflix/Aamazon Prime Clone)
 
-You will demonstrate your skills by creating an app that will fetch data from an internal server using a class component, displaying that data, using **component lifecycle** methods, **routing** concepts, **authentication**, and **authorization**, and adding responsiveness to the website.
+## _Project Description_
 
-This is an individual assessment. All work must be your own.
-
-### Prerequisites
-
-#### UI Prerequisites
-
-<details>
-<summary>Click to view</summary>
-
-- What is Figma?
-  - Figma is a vector graphics editor and prototyping tool which is primarily web-based. You can check more info on the <a href="https://www.figma.com/" target="_blank">Website</a>.
-- Create a Free account in Figma
-  - Kindly follow the instructions as shown in <a href="https://www.youtube.com/watch?v=hrHL2VLMl7g&t=37s" target="_blank">this</a> video to create a Free Figma account. Watch the video upto **00:50**.
-- How to Check CSS in Figma?
-  - Kindly follow the instructions as shown in <a href="https://www.youtube.com/watch?v=B242nuM3y2s" target="_blank">this</a> video to check CSS in the Figma screen. Watch the video upto **02:45**.
-- Export Images in Figma screen
-
-  - Kindly follow the instructions as shown in <a href="https://www.youtube.com/watch?v=NpzL1MONwaw" target="_blank">this</a> video to export images from the Figma screen.
-  - Click on the Export button to get Export options as shown in the below image.
-
-  <div style="text-align:center;margin:10px 0px 0px 45px;width:200px;">
-    <img src="https://assets.ccbp.in/frontend/react-js/figma-export-option.png" />
-  </div>
-
-- Upload your exported images from Figma to Cloudinary and get image URLs from Cloudinary. Refer <a href="https://learning.ccbp.in/projects/course?c_id=fe4c935d-3ad5-4bb8-a1a5-9b045ae70010&s_id=2f72d6fe-09a7-4c0a-b0db-196740c853a0&t_id=6535e48d-fb4e-45c4-9654-3da423c79e26" target="_blank">this</a> session for better understanding.
-
-</details>
+To build Netflix/Aamazon Prime Clone app that will fetch data from an internal server using a `class component`, displaying that data, using `component lifecycle methods`, `routing concepts`, `authentication and authorization`, and adding `responsiveness` to the website.
 
 #### Design Files
+- You can check the **Design Files** for different devices [here](https://www.figma.com/file/tPdVlj0p5PESmymNkHYVgk/Movies_App?node-id=0%3A1)
 
+### Features
+
+**Login Route**
 <details>
 <summary>Click to view</summary>
-
-- You can check the **Design Files** for different devices <a href="https://www.figma.com/file/tPdVlj0p5PESmymNkHYVgk/Movies_App?node-id=0%3A1" target="_blank">here</a>.
-
-</details>
-
-### Set Up Instructions
-
-<details>
-<summary>Click to view</summary>
-
-- Download dependencies by running `npm install`
-- Start up the app using `npm start`
-</details>
-
-### Completion Instructions
-
-<details>
-<summary>Functionality to be added</summary>
-<br/>
-The app must have the following functionalities
-
-- **Login Route**
 
   - When an invalid username and password are provided and the **Login** button is clicked, then the respective error message received from the response should be displayed
   - When a valid username and password are provided and the **Login** button is clicked, then the page should be navigated to the Home Route
@@ -63,8 +19,11 @@ The app must have the following functionalities
   - When an _authenticated_ user tries to access the Home Route, Popular Route, Search Route, Account Route and Movie Item Details Route, then the page should be navigated to the respective route
   - When an _authenticated_ user tries to access the Login Route, then the page should be navigated to the Home Route
 
-- **Home Route**
+</details>
 
+**Home Route**
+<details>
+<summary>Click to view</summary>
   - When an authenticated user opens the Home Route,
 
     - An HTTP Get request should be made to **Trending Now Movies API URL**, **Originals API URL** with `jwt_token` in the Cookies
@@ -76,19 +35,26 @@ The app must have the following functionalities
         - Display the list of movies received from the Originals Response
       - If any of the HTTP GET request made is unsuccessful, then the failure view given in the **Figma** screens should be displayed respectively
         - When the **Try Again** button is clicked, then the respective HTTP GET request should be made
-
     - When a **Movie** item is clicked, then the page should be navigated to the Movie Item Details Route
+    
+</details>
 
-  - **Header**  
 
-    - When the **Movies** logo in the header is clicked, then the page should be navigated to the Home Route
-    - When the **Home** link in the Header is clicked, then the page should be navigated to the Home Route
-    - When the **Popular** link in the header is clicked, then the page should be navigated to the Popular Route
-    - When the **Search** icon in the header is clicked, then the page should be navigated to the Search Route
-    - When the **Profile** logo in the header is clicked, then the page should be navigated to the Account Route
+**Header**
+<details>
+<summary>Click to view</summary>
+- When the **Movies** logo in the header is clicked, then the page should be navigated to the Home Route
+- When the **Home** link in the Header is clicked, then the page should be navigated to the Home Route
+- When the **Popular** link in the header is clicked, then the page should be navigated to the Popular Route
+- When the **Search** icon in the header is clicked, then the page should be navigated to the Search Route
+- When the **Profile** logo in the header is clicked, then the page should be navigated to the Account Route
 
-- **Popular Route**
+</details>
 
+
+**Popular Route**
+<details>
+<summary>Click to view</summary>
   - When an authenticated user opens the Popular Route
 
     - An HTTP GET request should be made to **Popular Movies API URL** with `jwt_token` in the Cookies
@@ -100,9 +66,13 @@ The app must have the following functionalities
 
     - When a **Movie** item is clicked, then the page should be navigated to the Movie Item Details Route
     - All the header functionalities mentioned in the Home Route should work in this route accordingly
+    
+</details>
 
-- **Movie Item details Route**
 
+**Movie Item details Route**
+<details>
+<summary>Click to view</summary>
   - When an authenticated user opens the Movie Item Details Route
 
     - An HTTP GET request should be made to **Movie Item Details API URL** with `jwt_token` in the Cookies
@@ -115,10 +85,13 @@ The app must have the following functionalities
         - When the **Try Again** button is clicked, an HTTP GET request should be made to **Movie Item Details API URL**
 
     - All the header functionalities mentioned in the Home Route should work in this route accordingly
+    
+</details>
 
 
-- **Search Route**
-
+**Search Route**
+<details>
+<summary>Click to view</summary>
   - When an authenticated user opens the Search Route
 
     - When a value is provided in the search input and the button with the search icon is clicked
@@ -133,8 +106,12 @@ The app must have the following functionalities
     - When a **Movie** item is clicked, then the page should be navigated to the Movie Item Details Route
     - All the header functionalities mentioned in the Home Route should work in this route accordingly
 
-- **Account Route**
+</details>
 
+
+**Account Route**
+<details>
+<summary>Click to view</summary>
   - When an authenticated user opens the Account Route
 
     - The username which was provided in the login, should be displayed
@@ -143,14 +120,17 @@ The app must have the following functionalities
 
   - All the header functionalities mentioned in the Home Route should work in this route accordingly
 
+</details>
 
-- **Not Found Route**
 
+**Not Found Route**
+<details>
+<summary>Click to view</summary>
   - When a random path is provided as the URL, then the page should navigate to the Not Found Route
 
-- Users should be able to view the website responsively in mobile view, tablet view as well
-
 </details>
+
+- Users should be able to view the website responsively in mobile view, tablet view as well
 
 ### Quick Tips
 
