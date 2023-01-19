@@ -455,7 +455,7 @@ Returns a response containing the list of movies and their movie names should in
 ### Stretch Goals
 
 <details>
-<summary>Additional Functionality to be added</summary>
+<summary>Additional Functionality added</summary>
 
 - Home Route
   - An HTTP Get request should be made to **Top Rated Movies API URL** as well
