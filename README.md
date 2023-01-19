@@ -139,105 +139,15 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 
 - Users should be able to view the website responsively in mobile view, tablet view as well
 
-### Quick Tips
 
-<details>
-<summary>Click to view</summary>
+### Third party packages used to achieve the design or functionality
 
-- Third party packages to be used to achieve the design or functionality
+  - React Slick <a href="https://react-slick.neostack.com/docs/get-started" target="_blank">Documentation</a>
 
-  - React Slick
-
-    - React Slick <a href="https://react-slick.neostack.com/docs/get-started" target="_blank">Documentation</a>
-    - React Slick implementation <a href="https://codesandbox.io/s/react-slick-demo-iz90x?file=/src/components/ReactSlick/index.js" target="_blank">CodeSandbox</a>
-    - Update the CSS accordingly to style the React Slider and arrow buttons, you can check the <a href="https://codesandbox.io/s/react-slick-demo-iz90x?file=/src/components/ReactSlick/index.css" target="_blank">CodeSandbox</a>
-    - Add the below CDN links in your `public > index.html` file for CSS and Font, you can check the <a href="https://codesandbox.io/s/react-slick-demo-iz90x?file=/public/index.html" target="_blank">CodeSandbox</a> for adding below lines
-
-    ```jsx
-    <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
-    ```
-
-  - Use date-fns format function to format the date. Refer to the documentation <a href="https://date-fns.org/v2.27.0/docs/format" target="_blank">Link</a> for the usage of format function.
+  - Used date-fns format function to format the date. Refer to the documentation <a href="https://date-fns.org/v2.27.0/docs/format" target="_blank">Link</a> for the usage of format function.
 
 </details>
 
-### Important Note
-
-<details>
-<summary>Click to view</summary>
-
-<br/>
-
-**The following instructions are required for the tests to pass**
-
-- **Note:**
-
-  - Don't use any third-party packages other than packages mentioned in the **Quick Tips**
-  - Use media queries for responsiveness. Instead of rendering the same elements twice for responsiveness.
-  - For Mini Projects, You have to use normal HTML elements to style the React Components. Usage of `styled-components` (CSS in JS) to style React components are not supported in Mini Projects. Test cases won't be passed, If you use styled components.
-  - Refer to the below Example for the usage of `testid` in the HTML elements.
-
-    - Example: `<div testid="movieItem" className="movie-item"/>`.
-
-- **Routes**
-
-  - Render `Login` Route component when the path in URL matches `/login`
-  - Render `Home` Route component when the path in URL matches `/`
-  - Render `Popular` Route component when the path in URL matches `/popular`
-  - Render `Movie Item Details` Route component when the path in URL matches `/movies/:id`
-  - Render `Search` Route component when the path in URL matches `/search`
-  - Render `Account` Route component when the path in URL matches `/account`
-
-- Wrap the `Loader` component with an HTML container element and add the `testid` attribute value as **loader** to it
-
-  ```jsx
-  <div className="loader-container" testid="loader">
-    <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
-  </div>
-  ```
-
-- **Login Route**
-
-  - The Movies App Logo image should consist of alt attribute value as `login website logo`
-  - The Cookies should be set by using the key name `jwt_token`
-
-- **Home Route**
-
-  - The movie images in the Home Route should have the alt attribute as the value of the key `title` from each object in Trending Now Movies Response, Originals Response
-
-- **Movie Item Details Route**
-
-  - The movie images in the Movie Item Details Route should have the alt as the value of the key `title` from each object in similarMoviesResponse
-  - The `runtime` key value received from the movie Item Details response, should be converted from minutes to hours and minutes and displayed in Movie Item Details Route
-  - The censor rating of the movie in the Movie Item Details Route should be displayed as **A** if the `adult` key value received from the movie Item Details response is true. Otherwise, it should be displayed as U/A
-
-- **Search Route**
-
-  - When the search results return an empty list, then the No Movies image should consist of alt attribute value as `no movies`
-  - When the search results return an empty list, then the text content as `Your search for {searchValue} did not find any matches.` should be displayed where searchValue is the value provided in Search Input
-  - The HTML button element with search icon in the header should have the `testid` attribute value as **searchButton** to it
-
-- **Not Found Route**
-
-  - The Not Found image should consist of alt attribute value as `not found`
-
-- **Header**
-
-  - The Movies App Logo image in Header should consist of alt attribute value as `website logo`
-  - The Profile image in the Header should consist of alt attribute value as `profile`
-  - The Failure View image should consist of alt attribute value as `failure view`
-  - `HiOutlineSearch` icon from react-icons should be used for the **Search Icon** button in Header
-  - The HTML button element with search icon in the header should have the `testid` attribute value as **searchButton** to it
-
-- **Footer**
-
-  - `FaGoogle` icon from react-icons should be used for the **Google Icon** button in Footer
-  - `FaTwitter` icon from react-icons should be used for the **Twitter Icon** button in Footer
-  - `FaInstagram` icon from react-icons should be used for the **Instagram Icon** button in Footer
-  - `FaYoutube` icon from react-icons should be used for the **Youtube Icon** button in Footer
-
-</details>
 
 ### Resources
 
@@ -539,54 +449,10 @@ Returns a response containing the list of movies and their movie names should in
   password: world@5
 ```
 
-```text
-  username: binita
-  password: modest*6
-```
-
-```text
-  username: chetan
-  password: vigor$life
-```
-
-```text
-  username: deepak
-  password: lightstar@1
-```
-
-```text
-  username: harshad
-  password: joy@85
-```
-
-```text
-  username: kapil
-  password: moon$008
-```
-
-```text
- username: rahul
- password: rahul@2021
-```
-
-```text
-  username: shravya
-  password: musical#stone
-```
-
-```text
-  username: saira
-  password: princess@9
-```
-
 <br/>
 </details>
 
 ### Stretch Goals
-
-If you complete the main features of the project you can try out the below features as well.
-
-**Note:** Just a reminder the additional functionality is just extra practice using the tools we have learned. These are not required. If you do not reach the stretch goals, don't worry.
 
 <details>
 <summary>Additional Functionality to be added</summary>
@@ -600,15 +466,3 @@ If you complete the main features of the project you can try out the below featu
       - When the **Try Again** button is clicked, then the HTTP GET request should be made to **Top Rated Movies API URL**
 - Users can browse popular movies & searched movies using pagination buttons.
 </details>
-
-### Project Submission Instructions
-
-- For Mini Projects, you can submit the test cases at your own pace. But we suggest you to submit the code to know the percentage of completion through test cases and that score will be considered for your interviews.
-
-- Also it's important to publish your code frequently using `Step - 4` in the Instructions tab.
-
-> ### _Things to Keep in Mind_
->
-> - All components you implement should go in the `src/components` directory.
-> - **Do not remove the pre-filled code**
-> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
