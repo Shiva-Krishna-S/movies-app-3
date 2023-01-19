@@ -1,6 +1,6 @@
 # Movies App (Netflix/Amazon Prime Clone)
 
-## _React-JS Project_
+## _React-JS Mini Project_
 
 A web application built using React JS that will fetch data from an internal server using a `class component`, displaying that data, using `component lifecycle methods`, `routing concepts`, `authentication and authorization`, and adding `responsiveness` to the website.
 
