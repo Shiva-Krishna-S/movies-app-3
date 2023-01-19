@@ -151,7 +151,7 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
       - Display the list of movies received from the top rated movies response
     - If the HTTP GET request made is unsuccessful, then the failure view given in the **Figma** screens should be displayed
       - When the **Try Again** button is clicked, then the HTTP GET request should be made to **Top Rated Movies API URL**
-- Users can browse popular movies & searched movies using pagination buttons.
+- Users can browse popular movies & searched movies using **_pagination_** buttons.
 </details>
 
 ### Third party packages used to achieve the design or functionality
