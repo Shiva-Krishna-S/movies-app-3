@@ -1,6 +1,6 @@
 # MoviesApp (Netflix/Aamazon Prime Clone)
 
-## _Project Description_
+## _React-JS Project_
 
 To build Netflix/Aamazon Prime Clone app that will fetch data from an internal server using a `class component`, displaying that data, using `component lifecycle methods`, `routing concepts`, `authentication and authorization`, and adding `responsiveness` to the website.
 
