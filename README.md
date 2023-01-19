@@ -154,13 +154,27 @@ Built Netflix/Aamazon Prime Clone app that will fetch data from an internal serv
 - Users can browse popular movies & searched movies using **_pagination_** buttons.
 </details>
 
-### Third party packages used to achieve the design or functionality
+## Technologies Used
+- React JS
+- Figma (for UI/UX design)
+- React Slick (for carousel)
+- date-fns (for date formatting)
+- js-cookies (for handling cookies)
+- react-icons (for icons)
+- react-router-dom (for routing)
+- react-loader-spinner (for loading spinner)
+- React (for component management)
+- JSX (for component rendering)
+- Babel (for transpiling code)
+- ESLint (for linting)
+- Prettier (for code formatting)
+- Webpack (for bundling and asset management)
 
-  - React Slick <a href="https://react-slick.neostack.com/docs/get-started" target="_blank">Documentation</a>
-
-  - Used date-fns format function to format the date. Refer to the documentation <a href="https://date-fns.org/v2.27.0/docs/format" target="_blank">Link</a> for the usage of format function.
-
-</details>
+## Built With
+- React JS
+- JavaScript
+- HTML/CSS
+- Figma
 
 
 ### User Credentials
