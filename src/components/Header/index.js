@@ -40,16 +40,15 @@ class Header extends Component {
     } else {
       const {searchInput} = this.state
       const {searchMovies} = this.props
-      if (searchInput !== '') {
-        searchMovies(searchInput)
-      }
+
+      searchMovies(searchInput)
     }
   }
 
   onSearchEnter = event => {
     const {searchInput} = this.state
     const {searchMovies} = this.props
-    if (event.key === 'Enter' && searchInput !== '') {
+    if (event.key === 'Enter') {
       searchMovies(searchInput)
     }
   }

@@ -147,7 +147,7 @@ class Search extends Component {
   }
 
   renderSearchSuccessView = () => {
-    const {currentPage} = this.state
+    const {currentPage, query} = this.state
     const {searchMoviesList} = this.state
     const startIndex = (currentPage - 1) * moviesPerPage
     const endIndex = startIndex + moviesPerPage
@@ -155,46 +155,48 @@ class Search extends Component {
     const totalPages = Math.ceil(searchMoviesList.length / moviesPerPage)
     return (
       <div className="search-page-content-container">
-        {searchMoviesList.length > 0 ? (
-          <>
-            <div className="search-page-content-top-container">
-              <ul className="searched-movies-list">
-                {currentPageMoviesList.map(eachMovie => (
-                  <li key={eachMovie.id} className="searched-movie-item">
-                    <Link to={`/movies/${eachMovie.id}`}>
-                      <img
-                        src={eachMovie.posterPath}
-                        alt={eachMovie.title}
-                        className="searched-movie-image"
-                      />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="pagination-container">
-              <button
-                type="button"
-                onClick={this.onClickPrevBtn}
-                className="arrow-button"
-              >
-                <MdOutlineNavigateBefore className="arrow-icon" />
-              </button>
-              <p className="page-number-text">
-                {currentPage} of {totalPages}
-              </p>
-              <button
-                type="button"
-                onClick={this.onClickNextBtn}
-                className="arrow-button"
-              >
-                <MdOutlineNavigateNext className="arrow-icon" />
-              </button>
-            </div>
-          </>
-        ) : (
-          this.renderNoMoviesFound()
-        )}
+        <>
+          {searchMoviesList.length > 0 && query !== '' ? (
+            <>
+              <div className="search-page-content-top-container">
+                <ul className="searched-movies-list">
+                  {currentPageMoviesList.map(eachMovie => (
+                    <li key={eachMovie.id} className="searched-movie-item">
+                      <Link to={`/movies/${eachMovie.id}`}>
+                        <img
+                          src={eachMovie.posterPath}
+                          alt={eachMovie.title}
+                          className="searched-movie-image"
+                        />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="pagination-container">
+                <button
+                  type="button"
+                  onClick={this.onClickPrevBtn}
+                  className="arrow-button"
+                >
+                  <MdOutlineNavigateBefore className="arrow-icon" />
+                </button>
+                <p className="page-number-text">
+                  {currentPage} of {totalPages}
+                </p>
+                <button
+                  type="button"
+                  onClick={this.onClickNextBtn}
+                  className="arrow-button"
+                >
+                  <MdOutlineNavigateNext className="arrow-icon" />
+                </button>
+              </div>
+            </>
+          ) : (
+            this.renderNoMoviesFound()
+          )}
+        </>
       </div>
     )
   }
