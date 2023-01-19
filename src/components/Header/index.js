@@ -140,6 +140,8 @@ class Header extends Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className="navbar-sub-container">
           {showMenuTabs && (
             <div className="navbar-route-tabs-container">
               <ul className="navbar-route-list-container">

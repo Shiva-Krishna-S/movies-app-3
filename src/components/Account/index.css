@@ -1,18 +1,22 @@
 .account-background-container {
   background-color: #131313;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .account-details-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
   background-color: #ffffff;
   min-height: 68vh;
 }
 
 @media screen and (min-width: 768px) {
   .account-details-container {
-    min-height: 90vh;
+    min-height: 80vh;
   }
 }
 
@@ -157,6 +161,7 @@
   outline: none;
   cursor: pointer;
   margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 @media screen and (min-width: 768px) {
@@ -165,5 +170,6 @@
     width: 120px;
     font-size: 19px;
     margin-top: 50px;
+    margin-bottom: 50px;
   }
 }

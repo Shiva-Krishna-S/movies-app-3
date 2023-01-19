@@ -1,6 +1,8 @@
 .home-background-container {
   background-color: #131313;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-top-container {
@@ -97,7 +99,7 @@
 }
 
 .random-movie-shade-container {
-  min-height: 50px;
+  min-height: 60px;
   background: linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0%,

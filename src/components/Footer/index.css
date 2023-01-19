@@ -4,12 +4,13 @@
   justify-content: center;
   align-items: center;
   background: #0d0d0d;
-  height: 18vh;
+  min-height: 85px;
+  /* height: 18vh; */
 }
 
 @media screen and (min-width: 768px) {
   .footer-container {
-    height: 25vh;
+    min-height: 145px;
   }
 }
 
@@ -24,6 +25,7 @@
   align-items: center;
   padding-left: 0px;
   list-style-type: none;
+  margin-top: 20px;
 }
 
 .footer-icon {
@@ -53,6 +55,7 @@
   line-height: 16px;
   color: #ffffff;
   margin-top: 0px;
+  margin-bottom: 20px;
   margin-left: -10px;
   text-align: center;
 }
