@@ -2,7 +2,7 @@
 
 ## _React-JS Project_
 
-Built Netflix/Aamazon Prime Clone app that will fetch data from an internal server using a `class component`, displaying that data, using `component lifecycle methods`, `routing concepts`, `authentication and authorization`, and adding `responsiveness` to the website.
+A web application built using React JS that will fetch data from an internal server using a `class component`, displaying that data, using `component lifecycle methods`, `routing concepts`, `authentication and authorization`, and adding `responsiveness` to the website.
 
 #### Design Files
 - You can check the **Design Files** for different devices [here](https://www.figma.com/file/tPdVlj0p5PESmymNkHYVgk/Movies_App?node-id=0%3A1)
