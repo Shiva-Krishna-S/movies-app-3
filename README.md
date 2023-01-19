@@ -24,6 +24,7 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 **Home Route**
 <details>
 <summary>Click to view</summary>
+  
   - When an authenticated user opens the Home Route,
 
     - An HTTP Get request should be made to **Trending Now Movies API URL**, **Originals API URL** with `jwt_token` in the Cookies
@@ -43,6 +44,7 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 **Header**
 <details>
 <summary>Click to view</summary>
+  
 - When the **Movies** logo in the header is clicked, then the page should be navigated to the Home Route
 - When the **Home** link in the Header is clicked, then the page should be navigated to the Home Route
 - When the **Popular** link in the header is clicked, then the page should be navigated to the Popular Route
@@ -55,6 +57,7 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 **Popular Route**
 <details>
 <summary>Click to view</summary>
+  
   - When an authenticated user opens the Popular Route
 
     - An HTTP GET request should be made to **Popular Movies API URL** with `jwt_token` in the Cookies
@@ -73,6 +76,7 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 **Movie Item details Route**
 <details>
 <summary>Click to view</summary>
+  
   - When an authenticated user opens the Movie Item Details Route
 
     - An HTTP GET request should be made to **Movie Item Details API URL** with `jwt_token` in the Cookies
@@ -92,6 +96,7 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 **Search Route**
 <details>
 <summary>Click to view</summary>
+  
   - When an authenticated user opens the Search Route
 
     - When a value is provided in the search input and the button with the search icon is clicked
@@ -112,6 +117,7 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 **Account Route**
 <details>
 <summary>Click to view</summary>
+  
   - When an authenticated user opens the Account Route
 
     - The username which was provided in the login, should be displayed
@@ -126,6 +132,7 @@ To build Netflix/Aamazon Prime Clone app that will fetch data from an internal s
 **Not Found Route**
 <details>
 <summary>Click to view</summary>
+  
   - When a random path is provided as the URL, then the page should navigate to the Not Found Route
 
 </details>
