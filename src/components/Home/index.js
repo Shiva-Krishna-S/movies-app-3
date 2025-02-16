@@ -73,6 +73,7 @@ class Home extends Component {
           )
         }
       } else {
+        // eslint-disable-next-line no-unused-vars
         const {originalsMoviesApiStatus} = this.state
         if (this.isComponentMounted) {
           this.setState({originalsMoviesApiStatus: apiStatusConstants.failure})

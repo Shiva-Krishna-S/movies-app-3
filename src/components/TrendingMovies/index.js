@@ -54,6 +54,7 @@ class TrendingMovies extends Component {
           })
         }
       } else {
+        // eslint-disable-next-line no-unused-vars
         const {trendingMoviesApiStatus} = this.state
         if (this.isComponentMounted) {
           this.setState({trendingMoviesApiStatus: apiStatusConstants.failure})

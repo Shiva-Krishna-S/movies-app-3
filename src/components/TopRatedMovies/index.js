@@ -54,6 +54,7 @@ class TopRatedMovies extends Component {
           })
         }
       } else {
+        // eslint-disable-next-line no-unused-vars
         const {topRatedMoviesApiStatus} = this.state
         if (this.isComponentMounted) {
           this.setState({topRatedMoviesApiStatus: apiStatusConstants.failure})

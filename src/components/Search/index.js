@@ -82,6 +82,7 @@ class Search extends Component {
           })
         }
       } else {
+        // eslint-disable-next-line no-unused-vars
         const {apiStatus} = this.state
         if (this.isComponentMounted) {
           this.setState({

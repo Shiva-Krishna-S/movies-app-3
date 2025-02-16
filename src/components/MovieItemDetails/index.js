@@ -103,6 +103,7 @@ class MovieItemDetails extends Component {
           this.setState({apiStatus: apiStatusConstants.failure})
         }
       } else {
+        // eslint-disable-next-line no-unused-vars
         const {apiStatus} = this.state
         if (this.isComponentMounted) {
           this.setState({apiStatus: apiStatusConstants.failure})
